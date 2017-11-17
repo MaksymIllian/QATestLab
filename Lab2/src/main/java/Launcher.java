@@ -3,6 +3,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class Launcher {
@@ -10,7 +12,7 @@ public class Launcher {
         WebDriver driver = initWebDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         String url = "http://prestashop-automation.qatestlab.com.ua/admin147ajyvk0/";
-        test1(driver, url);
+//        test1(driver, url);
         test2(driver, url);
         driver.quit();
     }
@@ -19,13 +21,22 @@ public class Launcher {
         login(driver);
         logout(driver);
     }
+    public static List<String> getMenuElements(WebDriver driver){
+        List<WebElement> menu= driver.findElements(By.className("maintab"));
+        List<String> menuElements = new ArrayList<String>();
+        for (WebElement element:
+             menu) {
+            String e = element.getText();
+            menuElements.add(e);
+        }
+        return menuElements;
+    }
     public static void test2(WebDriver driver, String url){
-        String[] menuElements = new String[]{"Dashboard", "Заказы", "Каталог","Клиенты", "Служба поддержки", "Статистика", "Modules",
-                                        "Design", "Доставка", "Способ оплаты", "International", "Shop Parameters", "Конфигурация"};
         driver.get(url);
         login(driver);
-        for (String element: menuElements
-             ) {
+        List<String> menuElements = getMenuElements(driver);
+        for (String element:
+             menuElements) {
             checkMenu(driver, element);
         }
     }
@@ -42,6 +53,24 @@ public class Launcher {
             System.out.println("User is staying at current page after refreshing");
         }else{
             System.out.println("User is not staying at current page after refreshing");
+        }
+    }
+    public static void checkMenu(WebDriver driver, List<WebElement> menu){
+//        WebElement menuElement = driver.findElement(By.linkText(element));
+        for (WebElement element: menu
+                ) {
+            element.click();
+            String expectedTitle = driver.getTitle();
+            System.out.println("Current title: " + expectedTitle);
+//        System.out.println(driver.getTitle());
+            driver.navigate().refresh();
+            String actualTitle = driver.getTitle();
+//        System.out.println(actualTitle.getText());
+            if (actualTitle.equals(expectedTitle)) {
+                System.out.println("User is staying at current page after refreshing");
+            } else {
+                System.out.println("User is not staying at current page after refreshing");
+            }
         }
     }
     public static void logout(WebDriver driver){
