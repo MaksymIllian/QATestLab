@@ -41,9 +41,10 @@ public class Tests extends BaseTest {
                 {"webinar.test@gmail.com", "Xcg7299bnSmMuRLp9ITw"}
         };
     }
-    @BeforeSuite
-    private static void initDriver(){
-        driver = getConfiguredDriver();
+    @BeforeClass
+    @Parameters("selenium.browser")
+    private static void init(@Optional("chrome") String browser){
+        driver = getConfiguredDriver(browser);
         initGood();
     }
     @BeforeMethod
@@ -79,12 +80,12 @@ public class Tests extends BaseTest {
         allGoodsPage.addedGoodClick();
 
         GoodPage goodPage = new GoodPage(driver);
-        softAssert.assertEquals(goodPage.getGoodName(),good.getName()+"jhfgj","Names is not equal!");
+        softAssert.assertEquals(goodPage.getGoodName(),good.getName(),"Names is not equal!");
         softAssert.assertEquals(goodPage.getGoodPrice(), good.getPrice(),"Prices is not equal!");
+        softAssert.assertEquals(goodPage.getGoodsCount(),good.getCount(), "Counts is not equal");
         softAssert.assertAll();
-
     }
-    @AfterSuite
+    @AfterClass
     private static void quitDriver() {
         quitDriver(driver);
     }

@@ -6,31 +6,29 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.BasePage;
 
-public class DashboardPage {
-    private WebDriver driver;
+public class DashboardPage extends BasePage {
+   // private WebDriver driver;
 
-    private By catalog = By.linkText("Каталог");
-    private By categories = By.linkText("категории");
-    private By goods = By.partialLinkText("товары");
+    private By catalog = By.xpath(".//*[@id='subtab-AdminCatalog']/a");
+    private By categories = By.partialLinkText("категории");
+    private By goods = By.partialLinkText("товары");;
     public DashboardPage(WebDriver driver){
         this.driver = driver;
     }
 
     public void moveToCatalog(){
-        WebDriverWait catalogWait = new WebDriverWait(driver,5);
-        catalogWait.until(ExpectedConditions.visibilityOfElementLocated(catalog));
+        elementWait(catalog);
         Actions moveAction = new Actions(driver);
         moveAction.moveToElement(driver.findElement(catalog)).build().perform();
     }
     public void categoriesClick(){
-        WebDriverWait categoriesWait = new WebDriverWait(driver,10);
-        categoriesWait.until(ExpectedConditions.visibilityOfElementLocated(categories));
+        elementWait(categories);
         driver.findElement(categories).click();
     }
     public void goodsClick(){
-        WebDriverWait categoriesWait = new WebDriverWait(driver,10);
-        categoriesWait.until(ExpectedConditions.visibilityOfElementLocated(goods));
+        elementWait(goods);
         driver.findElement(goods).click();
     }
 }

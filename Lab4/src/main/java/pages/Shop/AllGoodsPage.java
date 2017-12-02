@@ -7,10 +7,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import pages.BasePage;
 
-public class AllGoodsPage {
+public class AllGoodsPage extends BasePage{
 
-    private WebDriver driver;
+  //  private WebDriver driver;
 
     private String goodName;
     private By search = By.className("ui-autocomplete-input");
@@ -18,8 +19,8 @@ public class AllGoodsPage {
         this.driver = driver;
         this.goodName = null;
     }
-
     public void searchGood(){
+        elementWait(search);
         WebElement searchElement = driver.findElement(search);
         searchElement.sendKeys(this.goodName);
         searchElement.sendKeys(Keys.RETURN);
@@ -28,11 +29,11 @@ public class AllGoodsPage {
         this.goodName = name;
     }
     public WebElement getGood() {
+        elementWait(By.linkText(this.goodName));
         return driver.findElement(By.linkText(this.goodName));
     }
     public void addedGoodClick() {
-        WebDriverWait allGoodsWait = new WebDriverWait(driver,5);
-        allGoodsWait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(this.goodName)));
+        elementWait(By.linkText(this.goodName));
         driver.findElement(By.linkText(this.goodName)).click();
     }
 }

@@ -17,7 +17,7 @@ public class Good {
     }
 
     private static String generateInt(int min, int max) {
-        return Double.toString(Math.round(ThreadLocalRandom.current().nextDouble(min, max)*100)/100);
+        return Integer.toString(Math.round(ThreadLocalRandom.current().nextInt(min, max)));
     }
 
     private static String generateDouble(double min, double max) {
