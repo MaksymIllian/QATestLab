@@ -2,15 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Suite1">
-    <test name = "test with Firefox">
 
-        <parameter name = "selenium.browser" value="firefox"/>
-
-        <classes>
-            <class name = "tests.Tests"></class>
-        </classes>
-
-    </test>
     <test name = "test with Edge">
 
         <parameter name = "selenium.browser" value="edge"/>
@@ -20,6 +12,25 @@
         </classes>
 
     </test>
+    <test name = "test with Mobile">
+
+        <parameter name = "selenium.browser" value="mobile-chrome"/>
+
+        <classes>
+            <class name = "tests.Tests"></class>
+        </classes>
+
+    </test>
+    <test name = "test with Firefox">
+
+        <parameter name = "selenium.browser" value="firefox"/>
+
+        <classes>
+            <class name = "tests.Tests"></class>
+        </classes>
+
+    </test>
+
 
     <test name = "test with chrome">
 

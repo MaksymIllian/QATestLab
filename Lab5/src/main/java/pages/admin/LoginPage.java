@@ -24,15 +24,15 @@ public class LoginPage extends BasePage{
     }
 
     public void fillEmailInput(String emailInput){
-        elementWait(email);
+        elementVisibilityWait(email);
         driver.findElement(email).sendKeys(emailInput);
     }
     public void fillPasswordInput(String passwordInput){
-        elementWait(password);
+        elementVisibilityWait(password);
         driver.findElement(password).sendKeys(passwordInput);
     }
     public void submit(){
-        elementWait(submit);
+        elementVisibilityWait(submit);
         driver.findElement(submit).click();
     }
 

@@ -4,8 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.BasePage;
 
-import java.util.Random;
-
 public class AddPage extends BasePage {
    // private WebDriver driver;
 
@@ -17,12 +15,12 @@ public class AddPage extends BasePage {
     }
 
     public void fillNameInput(String rName){
-        elementWait(name);
+        elementVisibilityWait(name);
         driver.findElement(name).sendKeys(rName);
     }
 
     public void submit(){
-        elementWait(submit);
+        elementVisibilityWait(submit);
         driver.findElement(submit).click();
     }
 

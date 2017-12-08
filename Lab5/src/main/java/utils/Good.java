@@ -7,10 +7,22 @@ public class Good {
     private String name;
     private String price;
     private String count;
+    private String goodURL;
     public Good() {
         this.name = generateString();
         this.count = generateInt(1, 100);
         this.price = generateDouble(0.1, 100);
+    }
+    public Good(String name, String price, String count) {
+        this.name = name;
+        this.count = count;
+        this.price = price;
+    }
+    public Good(String name, String price, String count, String URL) {
+        this.name = name;
+        this.count = count;
+        this.price = price;
+        this.goodURL = URL;
     }
     private static String generateString() {
         return Double.toString(Math.random());
@@ -34,5 +46,9 @@ public class Good {
 
     public String getPrice() {
         return price;
+    }
+
+    public String getGoodURL() {
+        return goodURL;
     }
 }

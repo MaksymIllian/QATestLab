@@ -3,8 +3,6 @@ package pages.admin;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
 
 public class NewGoodPage extends BasePage{
@@ -21,32 +19,32 @@ public class NewGoodPage extends BasePage{
 
 
     public void fillGoodName(String name){
-        elementWait(goodName, driver);
+        elementVisibilityWait(goodName, driver);
         driver.findElement(goodName).sendKeys(name);
     }
 
     public void fillGoodPrice(String price){
-        elementWait(goodName, driver);
+        elementVisibilityWait(goodName, driver);
         WebElement priceElement = driver.findElement(goodPrice);
         priceElement.clear();
         priceElement.sendKeys(price);
     }
 
     public void fillGoodCount(String count){
-        elementWait(goodCount, driver);
+        elementVisibilityWait(goodCount, driver);
         WebElement countElement = driver.findElement(goodCount);
         countElement.clear();
         countElement.sendKeys(count);
     }
 
     public void switchButtonClick(){
-        elementWait(switchButton, driver);
+        elementVisibilityWait(switchButton, driver);
         driver.findElement(switchButton).click();
-        elementWait(message, driver);
+        elementVisibilityWait(message, driver);
     }
 
     public void saveButtonClick(){
         driver.findElement(saveButton).click();
-        elementWait(message, driver);
+        elementVisibilityWait(message, driver);
     }
 }
